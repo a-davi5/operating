@@ -8,7 +8,7 @@ import numpy as np
 import pickle, pprint
 import time
 
-# extract command line parmeters
+# extract command line parmeters and catcha's
 if len(sys.argv) == 3:
     register_to_change = sys.argv[1]
     new_value = str(sys.argv[2])
@@ -66,36 +66,35 @@ new_data = pickle.load(pkl_file)
 #close file
 pkl_file.close()
 
-print(new_data)
-
-
+print("The old settings\n")
 for i in range(19):
 	print "%-20s%-10i %s%s%s%s%s%-4s %s%s%s%s%s%s" % (names[18-i] ,i+1 ,new_data[i*6 + 0][1] ,new_data[i*6 + 1][1],new_data[i*6 + 2][1] ,new_data[i*6 + 3][1] ,new_data[i*6 + 4][1] ,new_data[i*6 + 5][1] ,new_data[i*6 + 114][1] ,new_data[i*6 +115][1],new_data[i*6 + 116][1] ,new_data[i*6 + 117][1] ,new_data[i*6 + 118][1] ,new_data[i*6 + 119][1])
 
-
+#set the values passed to the function to internal variables
 reg=int(register_to_change)
 value = list(new_value)
 
+#define l as an array
 l=[]
-
+# set i = 0 and append l with the values in new_data
 i = 0
-
 while i < len(new_data):
 	l.append([new_data[i][0], new_data[i][1]])
 	i+=1
 
-
+# update variable l with the new values
 for i in range(6):
 	l[((reg-1)*6)+i][1]=value[i]
 	l[(((reg-1)+19)*6)+i][1]=value[i]
 
-
+print("\nThe new settings\n")
 for i in range(19):
 	print "%-20s%-10i %s%s%s%s%s%-4s %s%s%s%s%s%s" % (names[18-i] ,i+1 ,l[i*6 + 0][1] ,l[i*6 + 1][1],l[i*6 + 2][1] ,l[i*6 + 3][1] ,l[i*6 + 4][1] ,l[i*6 + 5][1] ,l[i*6 + 114][1] ,l[i*6 +115][1],l[i*6 + 116][1] ,l[i*6 + 117][1] ,l[i*6 + 118][1] ,l[i*6 + 119][1])
 
-
+#save the new data
 t = open ("tmp3.pkl", 'wb')
 pickle.dump(l, t)
 t.close()
 
+print("\ndata saved to tmp3.pkl\nIf you are happy with the new settings, now run update_vector_file.py <filename>")
 

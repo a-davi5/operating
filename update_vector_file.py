@@ -16,31 +16,29 @@ import h5py
 
 # extract command line parmeters.  Usually use for ADC calibration so will use this as defualt
 if len(sys.argv) == 1:
-    vector_file_name   = "QEM_D4_198_ADC_0.txt"
+    print "use: analyse_vector_file.p <filename>"
+    exit(0)
 elif len(sys.argv) == 2:
     vector_file_name   = sys.argv[1]
 else:
     print "use: analyse_vector_file.p <filename>"
     exit(0)
 
-
-
 #extract lines into array
 with open(vector_file_name, 'r') as f:
     data = f.readlines()
 f.close()
 
+length=len(data)
+
+#extract the data from tmp3.pkl (new settings)
 pkl_file = open('tmp3.pkl', 'rb')
 new_data = pickle.load(pkl_file)
 
 #close file
 pkl_file.close()
 
-print(new_data)
-
-length=len(data)
-print(length)
-
+#open a newfle with the orifional name appended with _mod.txt
 f=open("%s_mod.txt" %vector_file_name, 'w')
 
 #write the first three lines, don't change!!
@@ -69,3 +67,4 @@ for i in range((length-3)-(k*(o-1))):
     else:	
         f.write(data[i+m+3])
 f.close()
+print("\nNew file has been created, check folder")
