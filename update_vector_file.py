@@ -9,11 +9,6 @@ import pickle, pprint
 import time
 import h5py
 
-#extract lines into array
-#with open(vector_file_name, 'r') as f:
-#    data = f.readlines()
-
-
 # extract command line parmeters.  Usually use for ADC calibration so will use this as defualt
 if len(sys.argv) == 1:
     print "use: analyse_vector_file.p <filename>"
