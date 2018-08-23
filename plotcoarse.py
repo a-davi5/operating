@@ -39,11 +39,11 @@ filelist=[]
 voltages = []
 #array of column averages for the plot
 averages = []
-
-#populate the voltage array
-voltages = generatecoarsevoltages(len(filelist))
 #generate a list of files to process
 filelist=Listh5Files()
+#populate the voltage array
+voltages = generatecoarsevoltages(len(filelist))
+
 
 #process the files in filelist
 for i in filelist:

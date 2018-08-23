@@ -103,3 +103,4 @@ while i < length:
 t = open ("tmp2.pkl", 'wb')
 pickle.dump(l, t)
 t.close()
+print("\ntmp2.pkl file created\nNext use python change_dac_settings.py <register number> <value '000000' to '111111'>")
